@@ -1,0 +1,5 @@
+[info]
+title=Linter for JavaScript/ReactJS, using ESLint
+desc=Linter for CudaLint, adds support for JavaScript lexer, using ESLint, requires Node.js
+type=cudatext-plugin
+subdir=cuda_lint_eslint
