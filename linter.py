@@ -6,16 +6,16 @@
 import os
 import re
 from cuda_lint import Linter, util
+from cudax_nodejs import NODE_FILE
 
-_node = 'node' if os.name=='nt' else 'nodejs'
-_js = os.path.join('.', 'node_modules', 'eslint', 'bin', 'eslint.js')
+_js = os.path.join(os.path.dirname(__file__), 'node_modules', 'eslint', 'bin', 'eslint.js')
 
 
 class ESLint(Linter):
     """Provides an interface to the eslint executable."""
 
     syntax = ('JavaScript', 'JavaScript Babel')
-    cmd = (_node, _js, '--format', 'compact', '--stdin', '--stdin-filename', '@')
+    cmd = (NODE_FILE, _js, '--format', 'compact', '--stdin', '--stdin-filename', '@')
     
     regex = (
         r'^.+?: line (?P<line>\d+), col (?P<col>\d+), '
