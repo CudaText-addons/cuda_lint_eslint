@@ -1,7 +1,7 @@
 
 2022.10.08
 + add: reused cudax_nodejs module
-* change: not ESLint must be installed locally in the linter's folder
+* change: ESLint must be installed locally in the linter's folder
 
 2016
 initial
