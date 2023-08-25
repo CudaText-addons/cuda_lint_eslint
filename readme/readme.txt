@@ -2,23 +2,22 @@ Linter for CudaLint.
 Supports JavaScript lexer, and ReactJS ("JavaScript Babel" lexer).
 
 Requires Node.js.
-Uses ESLint, you need to install ESLint locally in the linter's folder
-"(CudaText)/py/cuda_lint_eslint":
-$ npm install eslint
+Uses ESLint, ie "eslint" standalone program, so "eslint" must run from the command line.
+Why it doesn't use Node package in a local folder? To share the single "eslint" program
+with the CudaFormatter's formatter, which will also run "eslint".
+
+For example, to install ESLint on Ubuntu, one has to run:
+$ sudo apt install eslint
 
 
 Config file
 -----------
-
 ESLint needs config file, otherwise it shows single error "No ESLint configuration found".
-This file is ".eslintrc" or ".eslintrc.js", you must create it in the folder with checked files.
-In the linter's folder run this command:
+This file is ".eslintrc" or ".eslintrc.js".
+To create this config, in the folder of your JS project, run this command:
 $ npm init @eslint/config
-or
-$ node ./node_modules/eslint/bin/eslint.js --init
 
 This command asks questions in console, and then it creates ESLint config file.
-Copy this config to the folder of your working JS files.
 With this config, linter should work and show real errors.
 This was tested on Ubuntu.
 
