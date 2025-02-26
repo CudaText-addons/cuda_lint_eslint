@@ -12,7 +12,7 @@ IS_WIN = os.name=='nt'
 
 if not IS_WIN:
     import cudatext as app
-    _js = os.path.join(os.path.dirname(os.path.expandvars('~')), 'node_modules', 'eslint', 'bin', 'eslint.js')
+    _js = os.path.join(os.path.expanduser('~'), 'node_modules', 'eslint', 'bin', 'eslint.js')
     if not os.path.exists(_js):
         app.msg_box('ESLint linter cannot find file:\n'+_js, app.MB_OK+app.MB_ICONERROR)
 
