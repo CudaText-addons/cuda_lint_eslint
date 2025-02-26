@@ -5,21 +5,26 @@
 
 import os
 import re
-import cudatext as app
 from cuda_lint import Linter, util
 from cudax_nodejs import NODE_FILE
 
-_js = os.path.join(os.path.dirname(os.path.expandvars('~')), 'node_modules', 'eslint', 'bin', 'eslint.js')
-if not os.path.exists(_js):
-    app.msg_box('ESLint linter cannot find file:\n'+_js, app.MB_OK+app.MB_ICONERROR)
+IS_WIN = os.name=='nt'
+
+if not IS_WIN:
+    import cudatext as app
+    _js = os.path.join(os.path.dirname(os.path.expandvars('~')), 'node_modules', 'eslint', 'bin', 'eslint.js')
+    if not os.path.exists(_js):
+        app.msg_box('ESLint linter cannot find file:\n'+_js, app.MB_OK+app.MB_ICONERROR)
 
 
 class ESLint(Linter):
     """Provides an interface to the eslint executable."""
 
     syntax = ('JavaScript', 'JavaScript Babel')
-    cmd = (NODE_FILE, _js, '--format', 'compact', '--stdin', '--stdin-filename', '@')
-    # cmd = ('eslint', '--format', 'compact', '--stdin', '--stdin-filename', '@')
+    if IS_WIN:
+        cmd = ('eslint', '--format', 'compact', '--stdin', '--stdin-filename', '@')
+    else:
+        cmd = (NODE_FILE, _js, '--format', 'compact', '--stdin', '--stdin-filename', '@')
     
     regex = (
         r'^.+?: line (?P<line>\d+), col (?P<col>\d+), '
